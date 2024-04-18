@@ -27,12 +27,12 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo-data:/data/db
+      - mongo-data-management:/data/db
     networks:
       - management-network
 
 volumes:
-  mongo-data:
+  mongo-data-management:
     
 
 networks:
