@@ -12,7 +12,7 @@ services:
       - management-network
 
   backend:
-    build: .
+    build: ./api
     container_name: usr-back
     ports:
       - "3001:3001"
