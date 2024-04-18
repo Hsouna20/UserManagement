@@ -41,7 +41,7 @@ export default function DashProfile() {
       
         try {
           dispatch(updateStart());
-          const response = await axios.put(`http://localhost:3001/api/user/update/${currentUser._id}`, formData, {
+          const response = await axios.put(`http://usr-back:3001/api/user/update/${currentUser._id}`, formData, {
             headers: {
               'Content-Type': 'application/json',
             },
@@ -63,7 +63,7 @@ export default function DashProfile() {
       };
       const handleDeleteUser = async () => {
         try {
-          const response = await axios.delete(`http://localhost:3001/api/user/delete/${currentUser._id}`);
+          const response = await axios.delete(`http://usr-back:3001/api/user/delete/${currentUser._id}`);
           const data = response.data;
       
           if (response.status === 200) {
@@ -81,7 +81,7 @@ export default function DashProfile() {
       };
       const handleSignout = async () => {
         try {
-          const response = await axios.post('http://localhost:3001/api/user/signout');
+          const response = await axios.post('http://usr-back:3001/api/user/signout');
       
           if (response.status === 200) {
             dispatch(signoutSuccess());
