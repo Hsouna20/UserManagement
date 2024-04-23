@@ -23,7 +23,7 @@ export default function DashSidebar() {
   }, [location.search]);
   const handleSignout = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/api/user/signout');
+      const response = await axios.post('http://usr-back:3001/api/user/signout');
   
       if (response.status === 200) {
         dispatch(signoutSuccess());
