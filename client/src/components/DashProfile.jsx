@@ -16,10 +16,7 @@ import {
   } from '../redux/user/userSlice';
   
 export default function DashProfile() {
-  const [currentUser, setCurrentUser] = useState({
-    _id: '661998f73d22be91a79bf761', // Manually set the desired _id
-    
-  });
+  const { currentUser, error, loading } = useSelector((state) => state.user);
     const [formData, setFormData] = useState({});
     const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
     const [showModal, setShowModal] = useState(false);
