@@ -9,7 +9,7 @@ services:
     depends_on:
       - backend
     networks:
-      - management-network
+      - authentication-network
 
   backend:
     build: ./api
@@ -19,22 +19,22 @@ services:
     depends_on:
       - mongo
     networks:
-      - management-network
+      - authentication-network
 
   mongo:
     image: mongo:4.4.6
-    container_name: mongo
+    container_name: mongo-manag
     ports:
       - "27017:27017"
     volumes:
-      - mongo-data-management:/data/db
+      - mongo-data:/data/db
     networks:
-      - management-network
+      - authentication-network
 
 volumes:
-  mongo-data-management:
+  mongo-data:/data/db
     
 
 networks:
-   management-network:
+   authentication-network:
     driver: bridge

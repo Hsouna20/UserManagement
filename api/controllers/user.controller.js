@@ -9,11 +9,8 @@ export const test = (req , res) => {
 };
 
 export const updateUser = async (req, res, next) => {
-   
 
-  // Simulate an authenticated user by assigning a value to req.user.id
-  
-  if (req.params.userId !== '661998f73d22be91a79bf761') {
+  if (req.params.userId !== req.user.id ) {
     return next(errorHandler(403, 'You are not allowed to update this user'));
 }
     if (req.body.password) {
@@ -59,7 +56,7 @@ export const updateUser = async (req, res, next) => {
     }
   };
   export const deleteUser = async (req, res, next) => {
-    if ( '661998123d22be91a79bf75f' !== req.params.userId) {
+    if ( req.user.id  !== req.params.userId) {
       return next(errorHandler(403, 'You are not allowed to delete this user'));
     }
     try {

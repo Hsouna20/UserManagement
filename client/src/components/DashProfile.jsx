@@ -1,7 +1,7 @@
 import { Alert, Button, Modal, ModalBody, TextInput }from 'flowbite-react';
-import { Link } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
-import { useEffect, useRef, useState } from 'react';
+import {  useState } from 'react';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
 import axios from 'axios' ; 
@@ -9,14 +9,13 @@ import {
     updateStart,
     updateSuccess,
     updateFailure,
-    deleteUserStart,
   deleteUserSuccess,
   deleteUserFailure,
   signoutSuccess
   } from '../redux/user/userSlice';
   
 export default function DashProfile() {
-  const { currentUser, error, loading } = useSelector((state) => state.user);
+  const { currentUser} = useSelector((state) => state.user);
     const [formData, setFormData] = useState({});
     const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -38,7 +37,7 @@ export default function DashProfile() {
       
         try {
           dispatch(updateStart());
-          const response = await axios.put(`http://usr-back:3001/api/user/update/${currentUser._id}`, formData, {
+          const response = await axios.put(`http://localhost:3001/api/user/update/${currentUser._id}`, formData, {
             headers: {
               'Content-Type': 'application/json',
             },
@@ -60,25 +59,25 @@ export default function DashProfile() {
       };
       const handleDeleteUser = async () => {
         try {
-          const response = await axios.delete(`http://usr-back:3001/api/user/delete/${currentUser._id}`);
+          const response = await axios.delete(`http://localhost:3001/api/user/delete/${currentUser._id}`);
           const data = response.data;
       
           if (response.status === 200) {
-            // Dispatch success action if deletion was successful
+         
             dispatch(deleteUserSuccess(data));
           } else {
-            // Dispatch failure action if deletion failed
+           
             dispatch(deleteUserFailure(data.message || 'Failed to delete user'));
           }
         } catch (error) {
           console.error('Error deleting user:', error);
-          // Dispatch failure action if request failed
+       
           dispatch(deleteUserFailure('Failed to delete user. Please try again.'));
         }
       };
       const handleSignout = async () => {
         try {
-          const response = await axios.post('http://usr-back:3001/api/user/signout');
+          const response = await axios.post('http://localhost:3001/api/user/signout');
       
           if (response.status === 200) {
             dispatch(signoutSuccess());
