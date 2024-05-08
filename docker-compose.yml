@@ -32,9 +32,10 @@ services:
       - authentication-network
 
 volumes:
-  mongo-data:/data/db
+  mongo-data:
     
 
 networks:
    authentication-network:
     driver: bridge
+
